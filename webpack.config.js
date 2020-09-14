@@ -29,7 +29,6 @@ module.exports = {
     ],
   },
   resolve: {
-    //enable importing js jsx files without specifying their extension
     extensions: ['.js', '.jsx'],
   },
   devServer: {

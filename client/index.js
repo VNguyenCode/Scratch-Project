@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React from "react";
 import { render } from "react-dom";
 import App from "./App.jsx";
+import thunk from 'redux-thunk'
 // import Login from '../client/components/login/Login.jsx'
 // import Signup from '../client/components/login/Signup.jsx'
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

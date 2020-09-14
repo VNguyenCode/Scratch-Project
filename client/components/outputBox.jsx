@@ -22,7 +22,7 @@ class OutputBox extends Component {
           url_id: this.props.url_id
         }
       })
-      .then(()=>props.dispatchCheckStatus(statusObj))
+      .then(() => this.props.dispatchCheckStatus(statusObj))
       .catch ((err) => {
         console.error(err.messsage);
       })

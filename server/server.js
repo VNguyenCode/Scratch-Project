@@ -1,5 +1,6 @@
 const express = require('express');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
@@ -8,12 +9,18 @@ const PORT = 3000;
 const authrouter = require('./router/authrouter');
 const mainrouter = require('./router/mainrouter');
 
+app.use(cors());
+// app.use(express.json());\
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.urlencoded({extended:true}));
+// app.use(express.json());
 /**
  * Automatically parse urlencoded body content from incoming requests and place it
  * in req.body
  * https://www.npmjs.com/package/body-parser
  */
-app.use(bodyparser.urlencoded({ extended: true }));
+
 
 // handle authentication requests
 // server recieves request to /auth/login or /auth/register, then direct to /authrouter

@@ -112,6 +112,13 @@ maincontroller.addStatus = (req,res,next) => {
   )
 } 
 
+// maincontroller.allowCrossDomain = function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', "*");
+//   res.header('Access-Control-Allow-Headers', "*");
+//   next();
+// }
+
+
 //pingUrlInterval - A- retrieve URL and interval from database, B-set timer to ping URL, C-send message to twilio if status is not 200, D- save status code and time in database
 maincontroller.pingUrlInterval = (req, res, next) => {
   next();

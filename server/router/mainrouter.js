@@ -23,7 +23,8 @@ router.post('/addURL',
 //    maincontroller.addStatus,
 //     maincontroller.saveStatus,
      (req, res) => {
-  res.status(200).send('URL successfully added');
+  console.log(req)
+  // res.status(200).send('URL successfully added');
 });
 
 /* 4) api= /interval

@@ -3,10 +3,15 @@
 
 
 
-const addURL = (obj) => ({
+export const addURL = (urlObj) => ({
   type: ADD_URL,
-  payload: obj
+  payload: urlObj,
 });
+
+export const checkNow = (statusObj) => ({
+  type: CHECK_NOW,
+  payload: statusObj,
+})
 
 
 
@@ -16,7 +21,8 @@ const addURL = (obj) => ({
 
 // Action type constants
 
-const ADD_URL = "ADD CARD";
+export const ADD_URL = "ADD CARD";
+export const CHECK_NOW ="CHECK_NOW";
 
 
 

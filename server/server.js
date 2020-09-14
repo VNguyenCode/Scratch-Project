@@ -5,16 +5,22 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
-/* required routers */
+/*required routers*/
+
 const authrouter = require('./router/authrouter');
 const mainrouter = require('./router/mainrouter');
 
+<<<<<<< HEAD
 app.use(cors());
 // app.use(express.json());\
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.urlencoded({extended:true}));
 // app.use(express.json());
+=======
+
+
+>>>>>>> d5c1febc3f58ab806f72ef0eb6978393c6440e45
 /**
  * Automatically parse urlencoded body content from incoming requests and place it
  * in req.body

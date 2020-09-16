@@ -18,6 +18,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(
+  cors({
+    origin: ['http://localhost:8080', 'http://localhost:3000'],
+  })
+);
 
 // handle authentication requests
 // server recieves request to /auth/login or /auth/register, then direct to /authrouter

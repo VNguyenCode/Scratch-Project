@@ -3,8 +3,6 @@ const maincontroller = require('../controller/maincontroller');
 
 /* Iterate Option: We didn't get to this, but these are the controllers if we had authentication */
 const authcontroller = require('../controller/authcontroller');
-
-
 const router = express.Router();
 
 /* Default timer pings all urls in the db every hour */

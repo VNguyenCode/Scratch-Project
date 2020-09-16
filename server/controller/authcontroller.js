@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const db = require("../db/databaseIndex.js");
+const bcrypt = require("bcrypt");
 
 
 const authcontroller = {};
@@ -63,18 +64,34 @@ authcontroller.checkPw = (req, res, next) => {
     )
 };
 
+authcontroller.hashPassword = (req, res, next) => {
+
+  const { password } = req.body;
+
+  bcrypt.hash(password, 10, (err, hashed) => {
+    if(err) {
+      console.log(err);
+      return next(err);
+    }
+    console.log('hashed', hashed)
+    res.locals.hash = hashed;
+    return next();
+  });
+
+}
+
 authcontroller.saveUser = (req, res, next) => {
   if (res.locals.exist) return next();
 
-  let username = req.body.username;
-  let password = req.body.password;
-  let phoneNumber = req.body.phoneNumber;
+  const { username, phoneNumber } = req.body;
 
-  const saveQuery = 'INSERT INTO users (username, password, phone_number) VALUES ($1, $2, $3)'
+  const saveQuery = 'INSERT INTO users (username, password, phone_number) VALUES ($1, $2, $3);'
 
-  db.query(saveQuery, [username, password, phoneNumber])
+  db.query(saveQuery, [username, res.locals.hash, phoneNumber])
     .then((saved) => {
-      if (saved) return next()
+      console.log('saved: ', saved);
+      // if (saved) return next()
+      return next()
     })
     .catch((error) =>
       next({

@@ -17,7 +17,14 @@ const mapDispatchToProps = (dispatch) => ({
 const Signup = ({ username, password, phoneNumber, handleFormInput, handleFormSubmit }) => (
   <div className="signupcontainer">
     <h1>Sign Up</h1>
-    <form method="POST" action="/auth/signup">
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      handleFormSubmit({
+        username,
+        password,
+        phoneNumber,
+      });
+    }}>
       <div className="input">
         <p>Username</p>
         <div>
@@ -25,13 +32,13 @@ const Signup = ({ username, password, phoneNumber, handleFormInput, handleFormSu
         </div>
         <p>Password</p>
         <div>
-          <input name="password" type="text" />
+          <input name="password" type="password" onChange={(e) => handleFormInput(e.target)} />
         </div>
         <p>Phone Number</p>
         <div>
-          <input name="phonenumber" type="text" />
+          <input name="phoneNumber" type="text" onChange={(e) => handleFormInput(e.target)} />
         </div>
-        <input type="submit" value="Create Account" />
+        <button type="submit">SUBMIT</button>
       </div>
     </form>
   </div>

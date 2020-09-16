@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/action.js";
-import OutputBox from "../components/OutputBox";
+import OutputBox from "../components/outputBox";
 
 
 const mapStateToProps = (state) => ({

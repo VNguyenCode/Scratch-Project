@@ -12,6 +12,7 @@ const fetch = require('node-fetch');
 
 maincontroller.saveUrl = (req, res, next) => {
   const urlBody = req.body;
+  console.log('req.body', req.body); // --> 
   const urlArray = Object.keys(urlBody);
   const url = urlArray[0];
   res.locals.url = url;

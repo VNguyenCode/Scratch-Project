@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import OutputBoxContainer from "./OutputBoxContainer.jsx";
-import InputBox from "../components/InputBox.jsx";
-import * as actions from '../actions/action'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import OutputBoxContainer from './OutputBoxContainer.jsx';
+import InputBox from '../components/InputBox.jsx';
+import * as actions from '../actions/action';
 
 const mapStateToProps = (state) => ({
   currentUser: state.outputs.currentUser,
@@ -20,13 +20,13 @@ class MainContainer extends Component {
   render() {
     return (
       <div>
-          <InputBox 
+        <InputBox
           dispatchAddUrl={this.props.addURL}
           currentUser={this.props.currentUser}
-          />
+        />
 
-        <div id='outputboxcontainer' >
-          <OutputBoxContainer  />
+        <div id="outputboxcontainer">
+          <OutputBoxContainer />
         </div>
       </div>
     );

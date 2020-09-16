@@ -1,8 +1,5 @@
 const express = require('express');
-<<<<<<< HEAD
 const bodyparser = require('body-parser');
-=======
->>>>>>> 2acc4eefd60849528f795b16252dc7895a1e2b11
 const cors = require('cors');
 const app = express();
 const PORT = 3000;

@@ -5,10 +5,7 @@ export const addURL = (urlObj) => ({
   payload: urlObj,
 });
 
-export const checkNow = (statusObj) => (
-  console.log("we here"),
-  {
-    type: types.CHECK_NOW,
-    payload: statusObj,
-  }
-);
+export const checkNow = (statusObj) => ({
+  type: types.CHECK_NOW,
+  payload: statusObj,
+});

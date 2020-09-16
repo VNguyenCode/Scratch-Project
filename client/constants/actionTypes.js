@@ -1,2 +1,6 @@
 export const ADD_URL = "ADD CARD";
 export const CHECK_NOW = "CHECK_NOW";
+export const SIGNUP_FORM_INPUT = "SIGNUP_FORM_INPUT";
+export const SIGNUP_FORM_SUBMIT = "SIGNUP_FORM_SUBMIT";
+export const LOGIN_FORM_INPUT = "LOGIN_FORM_INPUT";
+export const LOGIN_FORM_SUBMIT = "LOGIN_FORM_SUBMIT";

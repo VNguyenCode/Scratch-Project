@@ -1,12 +1,11 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import '../scss/LoginStyle.css';
 
 const Login = () => (
   <>
     <div className="flex-container">
       <div className="flex-item">
-        <div className="logincontainer">
+        <div className="login-container">
           <h1>Welcome!</h1>
           <form method="POST" action="/auth/login">
             <div className="input">

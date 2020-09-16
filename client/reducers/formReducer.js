@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+import axios from 'axios';
 
 const initialState = {
   signup: {
@@ -21,12 +22,25 @@ const formReducer = (state = initialState, action) => {
         ...state,
         signup: {
           ...state.signup,
-          [name]: value
+          [name]: value,
         }
       }
     }
     case types.SIGNUP_FORM_SUBMIT: {
-
+      axios.post('/auth/register', action.payload)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      return {
+        ...state,
+        signup: {
+          ...state.signup,
+          ...action.payload,
+        }
+      }
     }
     // case types.LOGIN_FORM_INPUT: {
 

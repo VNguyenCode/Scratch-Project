@@ -28,10 +28,13 @@ store username, etc in database
 send to frontend- res.status 200 or error*/
 // authcontroller.encrypt,
 router.post('/register',
-  authcontroller.verify,
+  // authcontroller.verify,
+  authcontroller.hashPassword,
   authcontroller.saveUser,
   (req, res) => {
-    if (res.locals.exists) res.send('username taken');
+    // if (res.locals.exists) res.send('username taken');
+    console.log('req.body: ', req.body);
+    res.send('Hey Jin')
   })
 
 

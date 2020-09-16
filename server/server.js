@@ -1,8 +1,4 @@
 const express = require('express');
-<<<<<<< HEAD
-const bodyparser = require('body-parser');
-=======
->>>>>>> master
 const cors = require('cors');
 const app = express();
 const PORT = 3000;

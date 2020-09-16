@@ -1,15 +1,7 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "../actions/action.js";
-import OutputBox from "../components/outputBox";
-
-=======
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/action';
 import OutputBox from '../components/outputBox';
->>>>>>> master
 
 const mapStateToProps = (state) => ({
   urlList: state.outputs.urlList,

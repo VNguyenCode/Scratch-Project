@@ -1,0 +1,14 @@
+html,
+body {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}

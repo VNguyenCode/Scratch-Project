@@ -1,8 +1,4 @@
 const express = require('express');
-<<<<<<< HEAD
-const bodyparser = require('body-parser');
-=======
->>>>>>> 2acc4eefd60849528f795b16252dc7895a1e2b11
 const cors = require('cors');
 const app = express();
 const PORT = 3000;
@@ -22,13 +18,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
-app.use(cors({
-  origin: [
-    'http://localhost:8080',
-    'http://localhost:3000',
-  ]
-}));
+app.use(
+  cors({
+    origin: ['http://localhost:8080', 'http://localhost:3000'],
+  })
+);
 
 // handle authentication requests
 // server recieves request to /auth/login or /auth/register, then direct to /authrouter

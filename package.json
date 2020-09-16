@@ -1,8 +1,8 @@
 {
-  "name": "Scratch-Project",
+  "name": "Uptime",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "./client/index.jsx",
   "scripts": {
     "start": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -65,6 +65,8 @@
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "redux-devtools-extension": "^2.13.8",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "supertest": "^4.0.2",
     "webpack": "^4.44.1",

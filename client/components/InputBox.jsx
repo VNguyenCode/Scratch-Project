@@ -1,8 +1,8 @@
 import React from 'react';
-// import { connect } from 'react-redux';
 import axios from 'axios';
-// import { AddURL } from '../actions/action.js';
-// import * as actions from '../actions/action.js';
+import { connect } from 'react-redux';
+import { AddURL } from '../actions/action.js';
+import * as actions from '../actions/action.js';
 
 class InputBox extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class InputBox extends React.Component {
           username: this.props.currentUser,
           url_id: result.data.url_id,
           status: result.data.status,
-          url,
+          url: url,
         });
       })
       .catch((err) => console.log('err onsubform', err));
@@ -29,8 +29,10 @@ class InputBox extends React.Component {
   render() {
     return (
       <div id="inputBox">
-        <input id="addUrlForm" type="text" name="url" />
-        <button type="submit" onClick={this.onSubForm}>Add url</button>
+        <input id="addUrlForm" type="text" name="url"></input>
+        <button type="submit" onClick={this.onSubForm}>
+          Add url
+        </button>
       </div>
     );
   }

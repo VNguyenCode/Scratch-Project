@@ -6,16 +6,14 @@ const Login = () => (
     <div className="flex-container">
       <div className="flex-item">
         <div className="login-container">
-          <h1>Welcome!</h1>
+        <h1>Up ⏰</h1>
           <form method="POST" action="/auth/login">
             <div className="input">
-              <p>Username</p>
               <div>
-                <input name="username" type="text" />
+                <input name="username" type="text" placeholder="Username" />
               </div>
-              <p>Password</p>
               <div>
-                <input name="password" type="text" />
+                <input name="password" type="text" placeholder="Password" />
               </div>
               <input type="submit" value="login" />
             </div>

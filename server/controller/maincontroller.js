@@ -12,6 +12,7 @@ const fetch = require('node-fetch');
 
 maincontroller.saveUrl = (req, res, next) => {
   const urlBody = req.body;
+  console.log('req.body', req.body); // --> 
   const urlArray = Object.keys(urlBody);
   const url = urlArray[0];
   res.locals.url = url;
@@ -59,7 +60,6 @@ maincontroller.pingUrl = (req, res, next) => {
 
 /* Adds URL attributes to Postgres, but also sends back status to the client so that we can keep track in state */
 maincontroller.addStatus = (req, res, next) => {
-  // console.log('JOOOOOON')
   if (res.locals.db_url_id) res.locals.url_id = res.locals.db_url_id;
   const time = Date.now();
   const urlId = res.locals.url_id;

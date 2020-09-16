@@ -1,15 +1,16 @@
 import React from 'react';
 import Switch from 'react-bootstrap/esm/Switch';
 import { Route } from 'react-router';
-import MainContainer from './containers/MainContainer';
 
 // import Login, Signup, and create new container for inputBox/outputBox
-// import Login from 
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
+import MainContainer from './containers/MainContainer';
+
 
 const App = () => (
   <div id="main">
-    <MainContainer />
-    {/* <Switch>
+    <Switch>
       <Route 
         exact
         path="/"
@@ -17,15 +18,15 @@ const App = () => (
       />
       <Route 
         exact
-        path="/auth"
+        path="/signup"
         component={Signup}
       />
       <Route 
         exact
-        path="/"
-        component={}
+        path="/main"
+        component={MainContainer}
       />
-    </Switch> */}
+    </Switch>
   </div>
 );
 

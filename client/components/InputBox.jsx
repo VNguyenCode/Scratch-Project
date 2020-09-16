@@ -13,9 +13,8 @@ class InputBox extends React.Component {
   onSubForm(e) {
     e.preventDefault();
     const input = document.getElementById('addUrlForm');
-    const url = input.value;
-    return axios
-      .post('http://localhost:3000/main/addURL', `${url}`)
+    const url = input.value
+    return axios.post('http://localhost:3000/main/addURL', url)
       .then((result) => {
         this.props.dispatchAddUrl({
           username: this.props.currentUser,

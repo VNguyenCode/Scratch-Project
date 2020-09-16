@@ -1,5 +1,7 @@
+@import './variables';
+
 body {
-  background: lightgrey;
+  background: $background-color;
   /* background-image: linear-gradient(red, yellow); */
 }
 
@@ -38,5 +40,6 @@ button {
   padding: 20px;
   border: 2px solid black;
   border-radius: 3%;
+
   margin: 20px;
 }

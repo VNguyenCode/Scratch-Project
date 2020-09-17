@@ -119,10 +119,9 @@ describe('auth router integration', () => {
  * TESTING UNKNOWN ROUTE HANDLER FUNCTIONALITY
  */
 describe('unknown routes integration', () => {
-  it("reponds with 404 status and 'Not Found'", (done) => (
-    request(server).get('/random').expect(404).expect('Not Found', done)
-  )
-);
+  it("reponds with 404 status and 'Not Found'", (done) =>
+    request(server).get('/random').expect(404).expect('Not Found', done));
+});
 
 // NOT TOO SURE ON HOW TO APPROACH? LOOKED UP RESOURCES & NADA
 describe('global error handler integration', () => {});

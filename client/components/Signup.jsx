@@ -14,7 +14,10 @@ const mapDispatchToProps = (dispatch) => ({
   handleFormSubmit: (newState) => dispatch(actions.signupSubmit(newState)),
 });
 
-const Signup = ({
+/*  exporting Signup component here without connecting it to store
+ *  for testing purposes only
+ */
+export const Signup = ({
   username,
   password,
   phoneNumber,

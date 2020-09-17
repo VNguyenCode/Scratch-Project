@@ -13,7 +13,10 @@ const mapDispatchToProps = (dispatch) => ({
   handleFormSubmitLogin: (newState) => dispatch(actions.loginSubmit(newState)), //loginFetchData
 });
 
-const Login = ({
+/*  exporting Login component here without connecting it to store
+ *  for testing purposes only
+ */
+export const Login = ({
   username,
   password,
   handleFormInputLogin,

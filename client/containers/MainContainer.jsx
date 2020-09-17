@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainContainer = ({ addURL, currentUser }) => (
-  <div>
+  <div id="main-container">
     <InputBox dispatchAddUrl={addURL} currentUser={currentUser} />
     <div id="outputboxcontainer">
       <OutputBoxContainer />

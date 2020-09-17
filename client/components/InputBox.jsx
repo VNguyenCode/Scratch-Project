@@ -13,8 +13,9 @@ class InputBox extends React.Component {
   onSubForm(e) {
     e.preventDefault();
     const input = document.getElementById('addUrlForm');
-    const url = input.value
-    return axios.post('http://localhost:3000/main/addURL', url)
+    const url = input.value;
+    return axios
+      .post('http://localhost:3000/main/addURL', url)
       .then((result) => {
         this.props.dispatchAddUrl({
           username: this.props.currentUser,
@@ -29,9 +30,15 @@ class InputBox extends React.Component {
   render() {
     return (
       <div id="inputBox">
+        <img
+          id="uptime-logo"
+          src="./src/assets/angle-circle-arrow-up.png"
+          alt=""
+        />
+        <h1>UPTIME</h1>
         <input id="addUrlForm" type="text" name="url"></input>
         <button type="submit" onClick={this.onSubForm}>
-          Add url
+          Add Url
         </button>
       </div>
     );

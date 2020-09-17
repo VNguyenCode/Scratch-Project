@@ -53,6 +53,8 @@ app.use((err, req, res, next) => {
   res.status(errorObj.status || 500).send(errorObj.message);
 });
 
-module.exports = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });
+
+module.exports = app;

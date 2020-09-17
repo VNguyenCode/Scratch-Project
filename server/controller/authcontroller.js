@@ -77,7 +77,7 @@ authcontroller.checkPw = (req, res, next) => {
       } else {
         res.locals.exists = true;
         console.log('returned password query: ', verified.rows[0]);
-        // res.locals.user_id = verified.rows[0].user_id;
+        res.locals.user_id = verified.rows[0].user_id;
         // console.log('res.locals.user_id', res.locals.user_id);
         return next();
       }

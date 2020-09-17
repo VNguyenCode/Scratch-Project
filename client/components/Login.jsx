@@ -10,15 +10,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleFormInputLogin: (newState) => dispatch(actions.loginInput(newState)),
-  handleFormSubmitLogin: (newState) => dispatch(actions.loginSubmit(newState)), //loginFetchData
+  loginRequest: (newState) => dispatch(actions.loginRequest(newState)),
 });
 
-const Login = ({
-  username,
-  password,
-  handleFormInputLogin,
-  handleFormSubmitLogin,
-}) => (
+const Login = ({ username, password, handleFormInputLogin, loginRequest }) => (
   <div className="flex-container">
     <div className="flex-item">
       <div className="login-container">
@@ -26,7 +21,7 @@ const Login = ({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleFormSubmitLogin({
+            loginRequest({
               username,
               password,
             });

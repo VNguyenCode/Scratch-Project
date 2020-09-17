@@ -1,33 +1,31 @@
 import React from 'react';
-import Switch from 'react-bootstrap/esm/Switch';
-import { Route } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router';
+import { connect } from 'react-redux';
 
 // import Login, Signup, and create new container for inputBox/outputBox
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
 import MainContainer from './containers/MainContainer';
 
+// mapping state to props, so props will get state values
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.form.isLoggedIn,
+});
 
-const App = () => (
+// mapping dispatch to props, each key is a method which dispatches an action creator
+const mapDispatchToProps = (dispatch) => ({});
+
+const App = ({ isLoggedIn }) => (
   <div id="main">
     <Switch>
-      <Route 
-        exact
-        path="/"
-        component={Login}
-      />
-      <Route 
-        exact
-        path="/signup"
-        component={Signup}
-      />
-      <Route 
-        exact
-        path="/main"
-        component={MainContainer}
-      />
+      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/main" component={MainContainer} />
+      <Route exact path="/">
+        {isLoggedIn ? <Redirect to="/main" /> : <Login />}
+      </Route>
     </Switch>
   </div>
 );
 
-export default App;
+// connect state props & dispatch props to the App props
+export default connect(mapStateToProps, mapDispatchToProps)(App);

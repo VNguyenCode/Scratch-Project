@@ -14,8 +14,10 @@ router.post(
   authcontroller.verify,
   authcontroller.checkPw,
   (req, res) => {
-    if (res.locals.exists === false) res.send(res.locals.url_id); //save in state
-    res.redirect('https://localhost:8080/auth/register');
+    if (!res.locals.exists) res.send("username or password doesn't exist");
+    else
+      res.send({ user_id: res.locals.user_id, username: res.locals.username });
+    // res.redirect('https://localhost:8080/auth/register');
   }
 );
 

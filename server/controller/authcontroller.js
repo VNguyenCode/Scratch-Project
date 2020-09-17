@@ -57,7 +57,8 @@ authcontroller.checkPw = (req, res, next) => {
         // console.log('bcrypt true: ', result);
         return res.redirect('/main');
       } else {
-        // console.log('bcrypt result: ', err);
+        res.locals.exists = true;
+        res.locals.user_id = verified.rows[0].user_id;
         return next();
       }
     });

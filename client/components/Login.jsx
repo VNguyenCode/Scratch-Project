@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleFormInputLogin: (newState) => dispatch(actions.loginInput(newState)),
-  handleFormSubmitLogin: (newState) => dispatch(actions.loginSubmit(newState)), //loginFetchData
+  loginRequest: (newState) => dispatch(actions.loginRequest(newState)),
 });
 
 /*  exporting Login component here without connecting it to store
@@ -20,7 +20,7 @@ export const Login = ({
   username,
   password,
   handleFormInputLogin,
-  handleFormSubmitLogin,
+  loginRequest,
 }) => (
   <div className="flex-container">
     <div className="flex-item">
@@ -35,7 +35,7 @@ export const Login = ({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleFormSubmitLogin({
+            loginRequest({
               username,
               password,
             });

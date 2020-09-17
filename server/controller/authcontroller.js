@@ -1,14 +1,12 @@
-const path = require("path");
-const fs = require("fs");
-const db = require("../db/databaseIndex.js");
-const bcrypt = require("bcrypt");
-
+const path = require('path');
+const fs = require('fs');
+const db = require('../db/databaseIndex.js');
+const bcrypt = require('bcrypt');
 
 const authcontroller = {};
 
-
-//middleware 
-// verify if user exists with the db.query to check in Postgres 
+//middleware
+// verify if user exists with the db.query to check in Postgres
 //0=  go to dashboard/ front page
 authcontroller.verify = (req, res, next) => {
   res.locals.username = req.body.username;
@@ -20,24 +18,20 @@ authcontroller.verify = (req, res, next) => {
   const values = [res.locals.username];
   //call query on db passing
 
-  db.query(queryUser, values)
-    .then((verified) => {
-      if (verified.rows.length === 0) {
-        res.locals.exists = false;
-        return next();
-      }
-      res.locals.user_id = verified.rows.users_id;
+  db.query(queryUser, values).then((verified) => {
+    if (verified.rows.length === 0) {
+      res.locals.exists = false;
       return next();
-    })
-  //then if verify.rows.length === 0 , that means user doesn't exist 
+    }
+    res.locals.user_id = verified.rows.users_id;
+    return next();
+  });
+  //then if verify.rows.length === 0 , that means user doesn't exist
   // res.locals.exist = false
-  // !== 0 then the user exist 
-  // call middleware that checks passswords 
-  //return next 
-}
-
- 
-
+  // !== 0 then the user exist
+  // call middleware that checks passswords
+  //return next
+};
 
 authcontroller.checkPw = (req, res, next) => {
   if (!res.locals.exists) return next();
@@ -57,49 +51,48 @@ authcontroller.checkPw = (req, res, next) => {
     .catch((error) =>
       next({
         log:
-          "Express error handler caught error in maincontroller.storeUrl in db query selectUrlQuery",
+          'Express error handler caught error in maincontroller.storeUrl in db query selectUrlQuery',
         status: 400,
         message: { err: error },
       })
-    )
+    );
 };
 
 authcontroller.hashPassword = (req, res, next) => {
-
   const { password } = req.body;
 
   bcrypt.hash(password, 10, (err, hashed) => {
-    if(err) {
+    if (err) {
       console.log(err);
       return next(err);
     }
-    console.log('hashed', hashed)
+    console.log('hashed', hashed);
     res.locals.hash = hashed;
     return next();
   });
-
-}
+};
 
 authcontroller.saveUser = (req, res, next) => {
   if (res.locals.exist) return next();
 
   const { username, phoneNumber } = req.body;
 
-  const saveQuery = 'INSERT INTO users (username, password, phone_number) VALUES ($1, $2, $3);'
+  const saveQuery =
+    'INSERT INTO users (username, password, phone_number) VALUES ($1, $2, $3);';
 
   db.query(saveQuery, [username, res.locals.hash, phoneNumber])
     .then((saved) => {
       console.log('saved: ', saved);
       // if (saved) return next()
-      return next()
+      return next();
     })
     .catch((error) =>
       next({
         log:
-          "Express error handler caught error in maincontroller.storeUrl in db query selectUrlQuery",
+          'Express error handler caught error in maincontroller.storeUrl in db query selectUrlQuery',
         status: 400,
         message: { err: error },
       })
-    )
+    );
 };
 module.exports = authcontroller;

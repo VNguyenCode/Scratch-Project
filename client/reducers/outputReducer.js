@@ -4,19 +4,19 @@ const initialState = {
   /* Dummy Data this would be for pulling from DB */
   urlList: [
     {
-      username: 'Lucy',
+      // username: 'Lucy',
       url: 'www.yahoo.com',
       status: 400,
       url_id: 80,
     },
     {
-      username: 'Chris',
+      // username: 'Chris',
       url: 'www.coinbase.com',
       status: 400,
       url_id: 81,
     },
     {
-      username: 'Joon',
+      // username: 'Joon',
       url: 'www.facebook.com',
       status: 400,
       url_id: 90,

@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleFormInputLogin: (newState) => dispatch(actions.loginInput(newState)),
-  handleFormSubmitLogin: (newState) => dispatch(actions.loginSubmit(newState)),
+  handleFormSubmitLogin: (newState) => dispatch(actions.loginSubmit(newState)), //loginFetchData
 });
 
 const Login = ({
@@ -49,7 +49,7 @@ const Login = ({
                 onChange={(e) => handleFormInputLogin(e.target)}
               />
             </div>
-            <button type="submit">SUBMIT</button>
+            <button type="submit">Log in</button>
           </div>
         </form>
       </div>

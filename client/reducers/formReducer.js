@@ -71,6 +71,15 @@ const formReducer = (state = initialState, action) => {
         },
       };
     }
+    case types.ITEMS_HAS_ERRORED:
+      return action.hasErrored;
+
+    case types.ITEMS_IS_LOADING:
+      return action.isLoading;
+
+    case types.ITEMS_FETCH_DATA_SUCCESS:
+      return action.items;
+
     default:
       return state;
   }

@@ -52,12 +52,12 @@ authcontroller.checkPw = (req, res, next) => {
 
   db.query(queryUser, [passedInName]).then((dbHashPw) => {
     bcrypt.compare(passedInPass, dbHashPw.rows[0].password, (err, result) => {
-      console.log('dbHashPw: ', dbHashPw.rows[0].password);
+      // console.log('dbHashPw: ', dbHashPw.rows[0].password);
       if (result == true) {
-        console.log('bcrypt true: ', result);
+        // console.log('bcrypt true: ', result);
         return res.redirect('/main');
       } else {
-        console.log('bcrypt result: ', err);
+        // console.log('bcrypt result: ', err);
         return next();
       }
     });

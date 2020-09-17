@@ -22,7 +22,8 @@ const Signup = ({
   handleFormSubmit,
 }) => (
   <div className="signupcontainer">
-    <h1>Sign Up</h1>
+    <img id="uptime-logo" src="./src/assets/angle-circle-arrow-up.png" alt="" />
+    <h1>UPTIME</h1>
     <form
       onSubmit={(e) => {
         e.preventDefault();

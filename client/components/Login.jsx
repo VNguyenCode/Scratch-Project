@@ -22,7 +22,13 @@ const Login = ({
   <div className="flex-container">
     <div className="flex-item">
       <div className="login-container">
-        <h1>Up ⏰</h1>
+        {/* <h1>Up ⏰</h1> */}
+        <img
+          id="uptime-logo"
+          src="./src/assets/angle-circle-arrow-up.png"
+          alt=""
+        />
+        <h1>UPTIME</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -33,7 +39,7 @@ const Login = ({
           }}
         >
           <div className="input">
-            <div>
+            <div id="username-field">
               <input
                 name="username"
                 type="text"
@@ -41,7 +47,7 @@ const Login = ({
                 onChange={(e) => handleFormInputLogin(e.target)}
               />
             </div>
-            <div>
+            <div id="password-field">
               <input
                 name="password"
                 type="text"
@@ -55,9 +61,8 @@ const Login = ({
       </div>
 
       <div className="registerbutton">
-        <p>Don&apos;t have an account yet? </p>
         <Link to="/signup" className="btn btn-primary">
-          Need to sign up?
+          Create Account
         </Link>
       </div>
     </div>

@@ -19,13 +19,6 @@ module.exports = {
           },
         },
         exclude: /node_modules/,
-        query: {
-          presets: ['@babel/env', '@babel/react'],
-          plugins: [
-            '@babel/plugin-transform-runtime',
-            '@babel/transform-async-to-generator',
-          ],
-        },
       },
       {
         test: /\.s?css$/,

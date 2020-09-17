@@ -1,95 +1,88 @@
 const path = require('path');
 const fs = require('fs');
-const db = require('../db/databaseIndex.js');
 const bcrypt = require('bcrypt');
+const db = require('../db/databaseIndex.js');
 
 const authcontroller = {};
 
-//middleware
+// middleware
 // verify if user exists with the db.query to check in Postgres
-//0=  go to dashboard/ front page
+// 0=  go to dashboard/ front page
 authcontroller.verify = (req, res, next) => {
   console.log('req.body.username: ', req.body.username);
   res.locals.username = req.body.username;
   res.locals.password = req.body.password;
 
-  //save query to a const= verifyUser , which is set to 'SELECT username FROM users where username = $1
-  //create values vartiable which contains an array with ${username} as the first param
+  // save query to a const= verifyUser , which is set to 'SELECT username FROM users where username = $1
+  // create values vartiable which contains an array with ${username} as the first param
   const queryUser = 'SELECT username, user_id FROM users WHERE username = $1';
   const values = [res.locals.username];
-  //call query on db passing
+  // call query on db passing
 
   db.query(queryUser, values).then((verified) => {
-    //if username input is not found in db, prompt user to log in again or register
+    // if username input is not found in db, prompt user to log in again or register
     if (verified.rows.length === 0) {
       res.locals.exists = false;
       console.log("Username doesn't exist in database");
-      //should return error
-      return next();
-    } else {
-      //if username input is found in db, call the next middleware to check password
-      res.locals.exists = true;
-      res.locals.user_id = verified.rows[0].user_id;
-      console.log('res.locals.user_id', res.locals.user_id);
+      // should return error
       return next();
     }
+    // if username input is found in db, call the next middleware to check password
+    // res.locals.exists = true;
+    res.locals.user_id = verified.rows[0].user_id;
+    console.log('res.locals.user_id', res.locals.user_id);
+    return next();
   });
 
-  //then if verify.rows.length === 0 , that means user doesn't exist
+  // then if verify.rows.length === 0 , that means user doesn't exist
   // res.locals.exist = false
   // !== 0 then the user exist
   // call middleware that checks passswords
-  //return next
+  // return next
 };
 
-// authcontroller.checkHashedPw = (req, res, next) => {
-//   let passedInName = res.locals.username;
-//   let passedInPass = res.locals.password;
-
-//   const queryUser = 'SELECT password FROM users WHERE username = $1';
-
-//   db.query(queryUser, [passedInName])
-//     .then((pw) => {
-//       bcrypt.compare(passedInPass, pw)
-//         .then(function(result) {
-//         // if compare is true, move on to next middleware?
-//         // else redirect to Register
-//     });
-//   })
-// }
-
 authcontroller.checkPw = (req, res, next) => {
-  if (!res.locals.exists) return next(); // should redirect to register page
-  let passedInName = res.locals.username;
-  let passedInPass = res.locals.password;
-  console.log('res.locals.password', res.locals.password);
+  if (res.locals.exists === false) return next(); // should redirect to register page
 
-  const queryUser = 'SELECT * FROM users WHERE username = $1 AND password = $2';
+  const passedInName = res.locals.username;
+  const passedInPass = res.locals.password;
+  // console.log('res.locals.password', res.locals.password);
 
-  db.query(queryUser, [passedInName, passedInPass])
-    .then((verified) => {
-      console.log('verified.rows', verified.rows);
-      if (verified.rows.length === 0) {
-        res.locals.exists = false;
-        console.log("Password doesn't exist in database");
-        //should return error
-        return next();
+  const queryUser = 'SELECT password FROM users WHERE username = $1';
+
+  db.query(queryUser, [passedInName]).then((dbHashPw) => {
+    bcrypt.compare(passedInPass, dbHashPw.rows[0].password, (err, result) => {
+      // console.log('dbHashPw: ', dbHashPw.rows[0].password);
+      if (result == true) {
+        // console.log('bcrypt true: ', result);
+        return res.redirect('/main');
       } else {
         res.locals.exists = true;
-        console.log('returned password query: ', verified.rows[0]);
-        // res.locals.user_id = verified.rows[0].user_id;
-        // console.log('res.locals.user_id', res.locals.user_id);
+        res.locals.user_id = verified.rows[0].user_id;
         return next();
       }
-    })
-    .catch((error) =>
-      next({
-        log:
-          'Express error handler caught error in maincontroller.storeUrl in db query selectUrlQuery',
-        status: 400,
-        message: { err: error },
-      })
-    );
+    });
+
+    //   // console.log('verified.rows', verified.rows);
+    //   if (verified.rows.length === 0) {
+    //     res.locals.exists = false;
+    //     console.log("Password doesn't exist in database");
+    //     // should return error
+    //     return next();
+    //   }
+    //   res.locals.exists = true;
+    //   console.log('returned password query: ', verified.rows[0]);
+    //   // res.locals.user_id = verified.rows[0].user_id;
+    //   // console.log('res.locals.user_id', res.locals.user_id);
+    //   return next();
+    // })
+    // .catch((error) => next({
+    //   log:
+    //       'Express error handler caught error in maincontroller.storeUrl in db query selectUrlQuery',
+    //   status: 400,
+    //   message: { err: error },
+    // }));
+  });
 };
 
 authcontroller.hashPassword = (req, res, next) => {

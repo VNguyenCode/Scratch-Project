@@ -24,47 +24,55 @@ export const Signup = ({
   handleFormInput,
   handleFormSubmit,
 }) => (
-  <div className="signupcontainer">
-    <img id="uptime-logo" src="./src/assets/angle-circle-arrow-up.png" alt="" />
-    <h1>UPTIME</h1>
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleFormSubmit({
-          username,
-          password,
-          phoneNumber,
-        });
-      }}
-    >
-      <div className="input">
-        <p>Username</p>
-        <div>
-          <input
-            name="username"
-            type="text"
-            onChange={(e) => handleFormInput(e.target)}
-          />
-        </div>
-        <p>Password</p>
-        <div>
-          <input
-            name="password"
-            type="password"
-            onChange={(e) => handleFormInput(e.target)}
-          />
-        </div>
-        <p>Phone Number</p>
-        <div>
-          <input
-            name="phoneNumber"
-            type="text"
-            onChange={(e) => handleFormInput(e.target)}
-          />
-        </div>
-        <button type="submit">SUBMIT</button>
+  <div className="flex-container">
+    <div className="flex-item">
+      <div className="login-signupcontainer">
+        <img
+          id="uptime-logo"
+          src="./src/assets/angle-circle-arrow-up.png"
+          alt=""
+        />
+        <h1>UPTIME</h1>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleFormSubmit({
+              username,
+              password,
+              phoneNumber,
+            });
+          }}
+        >
+          <div className="input">
+            <div className="input-fields">
+              <input
+                name="username"
+                type="text"
+                placeholder="Username"
+                onChange={(e) => handleFormInput(e.target)}
+              />
+            </div>
+            <div className="input-fields">
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                onChange={(e) => handleFormInput(e.target)}
+              />
+            </div>
+            <div className="input-fields">
+              <input
+                name="phoneNumber"
+                type="text"
+                placeholder="Phone Number"
+                onChange={(e) => handleFormInput(e.target)}
+              />
+            </div>
+            <button type="submit">SUBMIT</button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 );
 

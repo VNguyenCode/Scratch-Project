@@ -29,10 +29,7 @@
   display: flex;
   flex-direction: column;
   margin: 15px 0 0 0;
-  #username-field {
-    display: flex;
-  }
-  #password-field {
+  .input-fields {
     display: flex;
   }
   input {
@@ -57,5 +54,22 @@
     color: $secondary-color;
     text-decoration: none;
     margin: 0 auto;
+  }
+}
+
+.login-signupcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  #uptime-logo {
+    width: 100px;
+    margin: 0 auto 10px auto;
+  }
+  h1 {
+    font-family: 'Bungee Hairline', cursive;
+    color: $primary-color;
+    font-size: 32px;
   }
 }

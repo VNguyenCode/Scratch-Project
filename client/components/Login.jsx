@@ -24,7 +24,7 @@ export const Login = ({
 }) => (
   <div className="flex-container">
     <div className="flex-item">
-      <div className="login-container">
+      <div className="login-signupcontainer">
         {/* <h1>Up ⏰</h1> */}
         <img
           id="uptime-logo"
@@ -42,7 +42,7 @@ export const Login = ({
           }}
         >
           <div className="input">
-            <div id="username-field">
+            <div className="input-fields">
               <input
                 name="username"
                 type="text"
@@ -50,7 +50,7 @@ export const Login = ({
                 onChange={(e) => handleFormInputLogin(e.target)}
               />
             </div>
-            <div id="password-field">
+            <div className="input-fields">
               <input
                 name="password"
                 type="text"
@@ -59,14 +59,13 @@ export const Login = ({
               />
             </div>
             <button type="submit">Log in</button>
+            <div className="registerbutton">
+              <Link to="/signup" className="btn btn-primary">
+                Create Account
+              </Link>
+            </div>
           </div>
         </form>
-      </div>
-
-      <div className="registerbutton">
-        <Link to="/signup" className="btn btn-primary">
-          Create Account
-        </Link>
       </div>
     </div>
   </div>

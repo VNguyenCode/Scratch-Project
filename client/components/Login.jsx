@@ -13,11 +13,25 @@ const mapDispatchToProps = (dispatch) => ({
   loginRequest: (newState) => dispatch(actions.loginRequest(newState)),
 });
 
-const Login = ({ username, password, handleFormInputLogin, loginRequest }) => (
+/*  exporting Login component here without connecting it to store
+ *  for testing purposes only
+ */
+export const Login = ({
+  username,
+  password,
+  handleFormInputLogin,
+  loginRequest,
+}) => (
   <div className="flex-container">
     <div className="flex-item">
-      <div className="login-container">
-        <h1>Up ⏰</h1>
+      <div className="login-signupcontainer">
+        {/* <h1>Up ⏰</h1> */}
+        <img
+          id="uptime-logo"
+          src="./src/assets/angle-circle-arrow-up.png"
+          alt=""
+        />
+        <h1>UPTIME</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -28,7 +42,7 @@ const Login = ({ username, password, handleFormInputLogin, loginRequest }) => (
           }}
         >
           <div className="input">
-            <div>
+            <div className="input-fields">
               <input
                 name="username"
                 type="text"
@@ -36,7 +50,7 @@ const Login = ({ username, password, handleFormInputLogin, loginRequest }) => (
                 onChange={(e) => handleFormInputLogin(e.target)}
               />
             </div>
-            <div>
+            <div className="input-fields">
               <input
                 name="password"
                 type="text"
@@ -45,15 +59,13 @@ const Login = ({ username, password, handleFormInputLogin, loginRequest }) => (
               />
             </div>
             <button type="submit">Log in</button>
+            <div className="registerbutton">
+              <Link to="/signup" className="btn btn-primary">
+                Create Account
+              </Link>
+            </div>
           </div>
         </form>
-      </div>
-
-      <div className="registerbutton">
-        <p>Don&apos;t have an account yet? </p>
-        <Link to="/signup" className="btn btn-primary">
-          Need to sign up?
-        </Link>
       </div>
     </div>
   </div>

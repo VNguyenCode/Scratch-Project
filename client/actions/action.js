@@ -26,48 +26,37 @@ export const loginInput = (input) => ({
   payload: input,
 });
 
-export const loginSubmit = (input) => ({
-  type: types.LOGIN_FORM_SUBMIT,
-  payload: input,
+export const loginFailed = (loginErr) => ({
+  type: types.LOGIN_FAILURE,
+  payload: { ...loginErr },
 });
 
-export const loginHasErrored = (bool) => ({
-  type: types.ITEMS_HAS_ERRORED,
-  hasErrored: bool,
+export const loginStarted = () => ({
+  type: types.LOGIN_START,
 });
 
-export const loginIsLoading = (bool) => ({
-  type: types.ITEMS_IS_LOADING,
-  isLoading: bool,
+export const loginSuccess = (loginResponse) => ({
+  type: types.LOGIN_SUCCESS,
+  payload: loginResponse,
 });
 
-export const loginFetchDataSuccess = (items) => ({
-  type: types.ITEMS_FETCH_DATA_SUCCESS,
-  payload: items,
-});
-
-export const loginFetchData = (input) => (dispatch) => {
-  dispatch(loginIsLoading(true));
-  // fetch(url)
-  axios
-    .post('/auth/login', input)
-    .then((response) => {
-      // if (!response.ok) {
-      //   throw Error(response.statusText);
-      // }
-      dispatch(loginIsLoading(false));
-      return response;
-    })
-    .then((response) => response.json())
-    .then((result) => {
-      dispatch(loginFetchDataSuccess(result));
-      return {
-        ...state,
-        login: {
-          ...state.login,
-          ...result,
-        },
-      };
-    })
-    .catch(() => dispatch(loginHasErrored(true)));
+export const loginRequest = (input) => {
+  return (dispatch) => {
+    // let store know a request has started
+    dispatch(loginStarted());
+    // post request to server, asios automatically parses response
+    axios
+      .post('/auth/login', {
+        username: input.username,
+        password: input.password,
+      })
+      // expect user info object from the request
+      .then((response) => {
+        if (typeof response.data === 'string')
+          dispatch(loginFailed(err.message));
+        // console.log('loginRequest response.data: ', response.data);
+        else dispatch(loginSuccess(response.data));
+      })
+      .catch((err) => dispatch(loginFailed(err.message)));
+  };
 };

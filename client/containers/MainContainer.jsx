@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addURL: (urlObj) => dispatch(actions.addURL(urlObj)),
+  loginFetchData: (url) => dispatch(actions.loginFetchData(url)),
 });
 
 const MainContainer = ({ addURL, currentUser }) => (

@@ -1,20 +1,58 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../actions/action';
 
-const Login = () => (
+const mapStateToProps = (state) => ({
+  username: state.form.login.username,
+  password: state.form.login.password,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleFormInputLogin: (newState) => dispatch(actions.loginInput(newState)),
+  handleFormSubmitLogin: (newState) => dispatch(actions.loginSubmit(newState)), //loginFetchData
+});
+
+/*  exporting Login component here without connecting it to store
+ *  for testing purposes only
+ */
+export const Login = ({
+  username,
+  password,
+  handleFormInputLogin,
+  handleFormSubmitLogin,
+}) => (
   <div className="flex-container">
     <div className="flex-item">
       <div className="login-container">
         <h1>Up ⏰</h1>
-        <form method="POST" action="/auth/login">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleFormSubmitLogin({
+              username,
+              password,
+            });
+          }}
+        >
           <div className="input">
             <div>
-              <input name="username" type="text" placeholder="Username" />
+              <input
+                name="username"
+                type="text"
+                placeholder="Username"
+                onChange={(e) => handleFormInputLogin(e.target)}
+              />
             </div>
             <div>
-              <input name="password" type="text" placeholder="Password" />
+              <input
+                name="password"
+                type="text"
+                placeholder="Password"
+                onChange={(e) => handleFormInputLogin(e.target)}
+              />
             </div>
-            <button type="submit">Log In</button>
+            <button type="submit">Log in</button>
           </div>
         </form>
       </div>
@@ -29,4 +67,4 @@ const Login = () => (
   </div>
 );
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

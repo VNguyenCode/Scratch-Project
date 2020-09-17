@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 // import components for testing
 import { Signup } from '../client/components/Signup';
-import Login from '../client/components/Login';
+import { Login } from '../client/components/Login';
 import MainContainer from '../client/containers/MainContainer';
 import InputBox from '../client/components/InputBox';
 import OutputBox from '../client/components/outputBox';

@@ -14,9 +14,8 @@ router.post(
   authcontroller.verify,
   authcontroller.checkPw,
   (req, res) => {
-    //if (!res.locals.exists)
-    res.send(res.locals.url_id); //save in state
-    res.redirect('https://localhost:8080/auth/register');
+    if (!res.locals.exists) res.send(res.locals.url_id); //save in state
+    // res.redirect('https://localhost:8080/auth/register');
   }
 );
 

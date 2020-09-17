@@ -4,7 +4,10 @@
   "plugins": [["@babel/plugin-proposal-class-properties", { "loose": true }]],
   "env": {
     "test": {
-      "plugins": ["@babel/plugin-transform-runtime"]
+      "plugins": [
+        "@babel/plugin-transform-runtime",
+        "@babel/transform-async-to-generator"
+      ]
     }
   }
 }

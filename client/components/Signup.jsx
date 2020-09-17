@@ -14,29 +14,52 @@ const mapDispatchToProps = (dispatch) => ({
   handleFormSubmit: (newState) => dispatch(actions.signupSubmit(newState)),
 });
 
-const Signup = ({ username, password, phoneNumber, handleFormInput, handleFormSubmit }) => (
+/*  exporting Signup component here without connecting it to store
+ *  for testing purposes only
+ */
+export const Signup = ({
+  username,
+  password,
+  phoneNumber,
+  handleFormInput,
+  handleFormSubmit,
+}) => (
   <div className="signupcontainer">
     <h1>Sign Up</h1>
-    <form onSubmit={(e) => {
-      e.preventDefault();
-      handleFormSubmit({
-        username,
-        password,
-        phoneNumber,
-      });
-    }}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleFormSubmit({
+          username,
+          password,
+          phoneNumber,
+        });
+      }}
+    >
       <div className="input">
         <p>Username</p>
         <div>
-          <input name="username" type="text" onChange={(e) => handleFormInput(e.target)} />
+          <input
+            name="username"
+            type="text"
+            onChange={(e) => handleFormInput(e.target)}
+          />
         </div>
         <p>Password</p>
         <div>
-          <input name="password" type="password" onChange={(e) => handleFormInput(e.target)} />
+          <input
+            name="password"
+            type="password"
+            onChange={(e) => handleFormInput(e.target)}
+          />
         </div>
         <p>Phone Number</p>
         <div>
-          <input name="phoneNumber" type="text" onChange={(e) => handleFormInput(e.target)} />
+          <input
+            name="phoneNumber"
+            type="text"
+            onChange={(e) => handleFormInput(e.target)}
+          />
         </div>
         <button type="submit">SUBMIT</button>
       </div>

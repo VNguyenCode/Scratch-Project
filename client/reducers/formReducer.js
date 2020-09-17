@@ -5,33 +5,34 @@ const initialState = {
   signup: {
     username: '',
     password: '',
-    phoneNumber: ''
+    phoneNumber: '',
   },
   login: {
     username: '',
     password: '',
   },
-}
+};
 
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SIGNUP_FORM_INPUT: {
       const { name, value } = action.payload;
-      console.log('state: ', state)
+      console.log('signup state: ', state);
       return {
         ...state,
         signup: {
           ...state.signup,
           [name]: value,
-        }
-      }
+        },
+      };
     }
     case types.SIGNUP_FORM_SUBMIT: {
-      axios.post('/auth/register', action.payload)
-        .then(response => {
+      axios
+        .post('/auth/register', action.payload)
+        .then((response) => {
           console.log(response);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
       return {
@@ -39,19 +40,40 @@ const formReducer = (state = initialState, action) => {
         signup: {
           ...state.signup,
           ...action.payload,
-        }
-      }
+        },
+      };
     }
-    // case types.LOGIN_FORM_INPUT: {
-
-    // }
-    // case types.LOGIN_FORM_SUBMIT: {
-
-    // }
+    case types.LOGIN_FORM_INPUT: {
+      const { name, value } = action.payload;
+      // console.log('login state: ', state);
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          [name]: value,
+        },
+      };
+    }
+    case types.LOGIN_FORM_SUBMIT: {
+      axios
+        .post('/auth/login', action.payload)
+        .then((response) => {
+          console.log('response login: ', response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          ...action.payload,
+        },
+      };
+    }
     default:
       return state;
-
   }
-}
+};
 
 export default formReducer;

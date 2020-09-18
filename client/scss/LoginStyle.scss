@@ -55,6 +55,8 @@
     color: $secondary-color;
     text-decoration: none;
     margin: 0 auto;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
   }
 }
 
@@ -72,5 +74,6 @@
     font-family: 'Bungee Hairline', cursive;
     color: $primary-color;
     font-size: 32px;
+    margin: 0 auto;
   }
 }

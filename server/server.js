@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const PORT = 3000;
+const path = require('path');
 
 /*required routers*/
 const authrouter = require('./router/authrouter');
@@ -34,6 +35,10 @@ app.use('/main', mainrouter);
 
 // request to '/', redirect to /authrouter (same as request to /register)
 app.use('/', authrouter);
+
+app.get('*', (req, res) => {
+  res.render(path.join(__dirname, '../client/index.html'));
+});
 
 // handle unknown path
 app.use((req, res) => {

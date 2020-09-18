@@ -21,7 +21,7 @@ const App = ({ isLoggedIn }) => (
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/main" component={MainContainer} />
       <Route exact path="/">
-        {isLoggedIn ? <Redirect to="/main" /> : <Login />}
+        {true ? <Redirect to="/main" /> : <Login />}
       </Route>
     </Switch>
   </div>

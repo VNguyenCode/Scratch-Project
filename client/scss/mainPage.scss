@@ -2,18 +2,16 @@
 
 body {
   background: $background-color;
-  /* background-image: linear-gradient(red, yellow); */
 }
 
 #main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-content: center;
-  height: 100%;
+  justify-content: center;
   #uptime-logo {
     width: 100px;
-    margin: 0 auto 10px auto;
+    margin: 100px auto 10px auto;
   }
   h1 {
     font-family: 'Bungee Hairline', cursive;
@@ -26,10 +24,12 @@ body {
 #outputBoxContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
   #outputBox {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
+    margin: 0 0 100px 0;
   }
 }
 
@@ -60,12 +60,15 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  border: 2px solid $secondary-color;
+  border: 1px solid $secondary-color;
   border-radius: 3%;
+  width: 240px;
+  height: 200px;
   margin: 20px;
   color: #ffffff;
+
   button {
-    padding: 5px 7px;
+    padding: 5px 8px;
     margin: 3px 5px 0 5px;
     background-color: $primary-color;
     border-radius: 2px;
@@ -74,17 +77,26 @@ body {
   .api-cards-text {
     display: flex;
     flex-direction: column;
+    margin: auto 0;
   }
   .status-text {
     display: flex;
     margin: 0 auto;
     font-size: 50px;
-    font-family: 'Bungee', cursive;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
     color: #ffffff;
   }
   .url-text {
     display: flex;
     margin: 0 auto 10px auto;
+    font-family: 'Bungee Hairline', cursive;
+    max-width: 175px;
+    overflow-x: auto;
+  }
+  .url-text::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
   }
   .output-buttons {
     display: flex;

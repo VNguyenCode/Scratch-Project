@@ -38,7 +38,7 @@ class InputBox extends React.Component {
         <h1>UPTIME</h1>
         <input id="addUrlForm" type="text" name="url"></input>
         <button type="submit" onClick={this.onSubForm}>
-          Add Url
+          ADD URL
         </button>
       </div>
     );

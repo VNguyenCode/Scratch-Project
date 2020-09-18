@@ -28,8 +28,8 @@ class OutputBox extends Component {
     return (
       <div id="boxes">
         <div className="api-cards-text" url_id={this.props.url_id}>
-          <div className="url-text">{this.props.url}</div>
-          <div className="status-text">{this.props.status}</div>
+          <p className="url-text">{this.props.url.toUpperCase()}</p>
+          <p className="status-text">{this.props.status}</p>
           <div className="output-buttons">
             <button onClick={this.checkNow}>STATUS</button>
             <button>UPTIME</button>

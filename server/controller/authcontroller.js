@@ -42,46 +42,25 @@ authcontroller.verify = (req, res, next) => {
 };
 
 authcontroller.checkPw = (req, res, next) => {
-  if (res.locals.exists === false) return next(); // should redirect to register page
-
   const passedInName = res.locals.username;
   const passedInPass = res.locals.password;
-  // console.log('res.locals.password', res.locals.password);
 
   const queryUser = 'SELECT password FROM users WHERE username = $1';
 
   db.query(queryUser, [passedInName]).then((dbHashPw) => {
     bcrypt.compare(passedInPass, dbHashPw.rows[0].password, (err, result) => {
-      // console.log('dbHashPw: ', dbHashPw.rows[0].password);
-      if (result == true) {
-        // console.log('bcrypt true: ', result);
-        return res.redirect('/main');
-      } else {
+      console.log('dbHashPw: ', dbHashPw);
+      if (result === true) {
+        // return to front end obj with username / userid
+        // { user_id: res.locals.user_id, username: res.locals.username }
         res.locals.exists = true;
-        res.locals.user_id = verified.rows[0].user_id;
+        res.locals.user_id = dbHashPw.rows[0].user_id;
+        return next();
+      } else {
+        res.locals.exists = false;
         return next();
       }
     });
-
-    //   // console.log('verified.rows', verified.rows);
-    //   if (verified.rows.length === 0) {
-    //     res.locals.exists = false;
-    //     console.log("Password doesn't exist in database");
-    //     // should return error
-    //     return next();
-    //   }
-    //   res.locals.exists = true;
-    //   console.log('returned password query: ', verified.rows[0]);
-    //   // res.locals.user_id = verified.rows[0].user_id;
-    //   // console.log('res.locals.user_id', res.locals.user_id);
-    //   return next();
-    // })
-    // .catch((error) => next({
-    //   log:
-    //       'Express error handler caught error in maincontroller.storeUrl in db query selectUrlQuery',
-    //   status: 400,
-    //   message: { err: error },
-    // }));
   });
 };
 

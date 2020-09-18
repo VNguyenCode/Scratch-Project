@@ -68,7 +68,7 @@ export const Signup = ({
                 onChange={(e) => handleFormInput(e.target)}
               />
             </div>
-            <button type="submit">SUBMIT</button>
+            <button type="submit">SIGN UP</button>
           </div>
         </form>
       </div>

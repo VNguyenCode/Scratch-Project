@@ -33,7 +33,7 @@ const formReducer = (state = initialState, action) => {
     }
     case types.SIGNUP_FORM_SUBMIT: {
       axios
-        .post('/auth/register', action.payload)
+        .post('/auth/signup', action.payload)
         .then((response) => {
           console.log(response);
         })

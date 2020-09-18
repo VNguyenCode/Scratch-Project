@@ -53,7 +53,7 @@ export const Login = ({
             <div className="input-fields">
               <input
                 name="password"
-                type="text"
+                type="password"
                 placeholder="Password"
                 onChange={(e) => handleFormInputLogin(e.target)}
               />

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
 class OutputBox extends Component {
   constructor(props) {
@@ -9,15 +9,11 @@ class OutputBox extends Component {
 
   checkNow() {
     return axios
-      .post(
-        "http://localhost:3000/main/checkNow",
-        {
-          url_id: this.props.url_id,
-          url: this.props.url,
-        }
-      )
+      .post('http://localhost:3000/main/checkNow', {
+        url_id: this.props.url_id,
+        url: this.props.url,
+      })
       .then((status) =>
-
         this.props.dispatchCheckStatus({
           status: status.data.status,
           url_id: this.props.url_id,
@@ -31,13 +27,15 @@ class OutputBox extends Component {
   render() {
     return (
       <div id="boxes">
-        <div url_id={this.props.url_id}>
-          url: {this.props.url}
-          status: {this.props.status} 
-          <button onClick={this.checkNow}>check now</button>
-          <button>uptime</button>
+        <div className="api-cards-text" url_id={this.props.url_id}>
+          <p className="url-text">{this.props.url.toUpperCase()}</p>
+          <p className="status-text">{this.props.status}</p>
+          <div className="output-buttons">
+            <button onClick={this.checkNow}>STATUS</button>
+            <button>UPTIME</button>
+          </div>
         </div>
-      </div> 
+      </div>
     );
   }
 }

@@ -6,11 +6,14 @@ const router = express.Router();
 url= /login, info will come in req.body
 response is 200 status/error status
 error status= direct back to sign up page*/
-
-router.post('/login', authcontroller.verify, authcontroller.checkPw, (req, res) => {
+console.log(authcontroller)
+router.post('/login', 
+authcontroller.verify, 
+authcontroller.checkPw, 
+(req, res) => { 
   //if (!res.locals.exists)
-  res.send(res.locals.url_id)//save in state
-  res.redirect('https://localhost:8080/auth/register')
+  // res.send(res.locals.url_id)//save in state
+  // res.redirect('https://localhost:8080/auth/register')
 
 })
 

@@ -8,55 +8,62 @@ import {
 } from 'react-router-dom';
 import './loginstyle.css';
 import Signup from './Signup';
+import axios from 'axios';
 
 class MyForm extends React.Component {
   constructor() {
     super();
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.state = {
+      username: '',
+      password: '',
+    };
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
+  onChange = (e) => {
+    /*
+      Because we named the inputs to match their
+      corresponding values in state, it's
+      super easy to update the state
+    */
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-    fetch('/auth/login', {
-      method: 'POST',
-      body: data,
-    })
-      .then((response) => response.json())
-      .then(props.dispatch('change the state in the store'));
+  onSubmit(event) {
+    event.preventDefault();
+    const { username, password} = this.state;
+    // const data = new FormData(event.target);
+    //const { fname, lname, phone } = this.state;
+    axios.post('http://localhost:3000/auth/login', { username, password})
+      .then((result)=> {
+        console.log(result)
+      })
   }
 
   render() {
+    const { username, password } = this.state;
     return (
-      <div className="flex-container">
-        <div className="flex-item">
-          <div className="logincontainer">
-            <form onSubmit={this.handleSubmit}>
-              <div className="child">
-                <div>
-                  <label htmlFor="username">Username</label>
-                </div>
-                <input id="username" name="username" type="text" />
-              </div>
-              <div className="child">
-                <div>
-                  <label htmlFor="email">Password</label>
-                </div>
-                <input id="email" name="email" type="email" />
-              </div>
-              <div className="child">
-                <div>
-                  <label htmlFor="birthdate">Phone Number</label>
-                </div>
-                <input id="birthdate" name="birthdate" type="text" />
-              </div>
-              <button>Log In</button>
-              <button>Sign Up</button>
-            </form>
-          </div>
-        </div>
+      <form onSubmit={this.onSubmit}>
+      <div>
+      <input
+        type="text"
+        name="username"
+        value={username}
+        onChange={this.onChange}
+        placeholder = 'Enter your username'
+      />
       </div>
+      <input
+        type="text"
+        name="password"
+        value={password}
+        onChange={this.onChange}
+        placeholder = 'Enter your password'
+      />
+      <div>
+      <button type="submit">Submit</button>
+      </div>
+    </form>
     );
   }
 }
@@ -98,3 +105,32 @@ export default MyForm;
 // };
 
 // export default Login;
+/* <div className="flex-container">
+        <div className="flex-item">
+          <div className="logincontainer">
+            <form onSubmit={this.handleSubmit}>
+              <div className="child">
+                <div>
+                  <label htmlFor="username">Username</label>
+                </div>
+                <input id="username" name="username" type="text" />
+              </div>
+              <div className="child">
+                <div>
+                  <label htmlFor="password">Password</label>
+                </div>
+                <input id="password" name="password" type="text" />
+              </div>
+              <div className="child">
+                <div>
+                  <label htmlFor="birthdate">Phone Number</label>
+                </div>
+                <input id="birthdate" name="birthdate" type="text" />
+              </div>
+              <button>Log In</button>
+              <button>Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div> */
+

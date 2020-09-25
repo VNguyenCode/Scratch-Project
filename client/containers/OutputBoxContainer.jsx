@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "../actions/action.js";
-import OutputBox from "../components/OutputBox";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions/action.js';
+import OutputBox from '../components/OutputBox';
 
 // import child components
 
@@ -15,7 +15,6 @@ const mapStateToProps = (state) => ({
   // currentUser: state.outputs.currentUser,
   // status: state.outputs.status,
   url_id: state.outputs.currentUser,
-
 });
 
 const mapDispatchToProps = (dispatch) => ({

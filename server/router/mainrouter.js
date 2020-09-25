@@ -6,7 +6,6 @@ const cron = require('node-cron');
 const { startTasks } = require('../controller/maincontroller');
 const router = express.Router();
 
-const router = express.Router();
 
 
 /*Default timer pings all urls in the db every hour*/
@@ -116,6 +115,6 @@ time will be req.body*/
 
 //router.get('/historicalData', maincontroller.getData, (req, res) => {
   //res.status(200).send('test');
-});
+// });
 
 module.exports = router;

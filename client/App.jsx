@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import MainContainer from './containers/MainContainer';
-import Login from './components/login/Login'
+import Login from './components/login/Login';
+import SignUpForm from './components/login/Signup';
 
 class App extends Component {
   constructor(props) {

@@ -6,8 +6,7 @@ import reducers from './reducers/index';
 // we are adding composeWIthDevTools here to get easy access to the Redux dev tools
 const store = createStore(
   reducers,
-  applyMiddleware(thunk),
-  // composeWithDevTools(),
+  composeWithDevTools(applyMiddleware(thunk))
 );
 
 export default store;

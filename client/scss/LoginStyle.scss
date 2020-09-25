@@ -1,0 +1,79 @@
+@import './variables';
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  #uptime-logo {
+    width: 100px;
+    margin: 0 auto 10px auto;
+  }
+  h1 {
+    font-family: 'Bungee Hairline', cursive;
+    color: $primary-color;
+    font-size: 32px;
+  }
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0 0 0;
+  .input-fields {
+    display: flex;
+  }
+  input {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    margin: 3px 0;
+  }
+  button {
+    padding: 5px 0;
+    margin: 3px 0 0 0;
+    background-color: $primary-color;
+    border-radius: 2px;
+    border: none;
+  }
+}
+
+.registerbutton {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0 0;
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+    margin: 0 auto;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+  }
+}
+
+.login-signupcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  #uptime-logo {
+    width: 100px;
+    margin: 0 auto 10px auto;
+  }
+  h1 {
+    font-family: 'Bungee Hairline', cursive;
+    color: $primary-color;
+    font-size: 32px;
+    margin: 0 auto;
+  }
+}

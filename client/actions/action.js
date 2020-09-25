@@ -1,33 +1,62 @@
-export const ADD_URL = 'ADD CARD';
-export const CHECK_NOW = 'CHECK_NOW';
+import * as types from '../constants/actionTypes';
+import axios from 'axios';
 
 export const addURL = (urlObj) => ({
-  type: ADD_URL,
+  type: types.ADD_URL,
   payload: urlObj,
 });
 
 export const checkNow = (statusObj) => ({
-  type: CHECK_NOW,
+  type: types.CHECK_NOW,
   payload: statusObj,
 });
 
-export const addURLNow = (url) => {
-  fetch('http://localhost:3000/main/addURL', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(url),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      // const urlObj = {
-      //   url,
-      //   status: data.status,
-      //   url_Id: data.url_Id,
-      // };
-    })
-    .then(() => this.props.dispatchCheckStatus(statusObj))
-    .catch((err) => {
-      console.error(err.messsage);
-    });
+export const signupInput = (input) => ({
+  type: types.SIGNUP_FORM_INPUT,
+  payload: input,
+});
+
+export const signupSubmit = (input) => ({
+  type: types.SIGNUP_FORM_SUBMIT,
+  payload: input,
+});
+
+export const loginInput = (input) => ({
+  type: types.LOGIN_FORM_INPUT,
+  payload: input,
+});
+
+export const loginFailed = (loginErr) => ({
+  type: types.LOGIN_FAILURE,
+  payload: { ...loginErr },
+});
+
+export const loginStarted = () => ({
+  type: types.LOGIN_START,
+});
+
+export const loginSuccess = (loginResponse) => ({
+  type: types.LOGIN_SUCCESS,
+  payload: loginResponse,
+});
+
+export const loginRequest = (input) => {
+  return (dispatch) => {
+    // let store know a request has started
+    dispatch(loginStarted());
+    // post request to server, asios automatically parses response
+    axios
+      .post('/auth/login', {
+        username: input.username,
+        password: input.password,
+      })
+      // expect user info object from the request
+      .then((response) => {
+        if (typeof response.data === 'string')
+          dispatch(loginFailed(err.message));
+        // console.log('loginRequest response.data: ', response.data);
+        else dispatch(loginSuccess(response.data));
+      })
+      .catch((err) => dispatch(loginFailed(err.message)));
+  };
 };

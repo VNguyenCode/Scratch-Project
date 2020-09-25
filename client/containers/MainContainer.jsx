@@ -1,30 +1,26 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import OutputBoxContainer from "./OutputBoxContainer.jsx";
-import InputBox from "../components/InputBox.jsx";
+import React from 'react';
+import { connect } from 'react-redux';
+import OutputBoxContainer from './OutputBoxContainer';
+import InputBox from '../components/InputBox';
+import * as actions from '../actions/action';
+import Signup from '../components/Signup';
+import Login from '../components/Login';
 
-// provide pertinent state here - making a props object to send to react components
-const mapStateToProps = (state) => ({});
-
-// dispatch knows to get it to reducer because of connect on line 31
-const mapDispatchToProps = (dispatch) => ({
-  addURL: (urlObj) => dispatch(addURL(urlObj)),
+const mapStateToProps = (state) => ({
+  currentUser: state.outputs.currentUser,
 });
 
-class MainContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+const mapDispatchToProps = (dispatch) => ({
+  addURL: (urlObj) => dispatch(actions.addURL(urlObj)),
+});
 
-  render() {
-    return (
-      <div>
-        maincontainer
-        <InputBox dispatchAddUrl={this.props.addURL} />
-        <OutputBoxContainer />
-      </div>
-    );
-  }
-}
+const MainContainer = ({ addURL, currentUser }) => (
+  <div id="main-container">
+    <InputBox dispatchAddUrl={addURL} currentUser={currentUser} />
+    <div id="outputboxcontainer">
+      <OutputBoxContainer />
+    </div>
+  </div>
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

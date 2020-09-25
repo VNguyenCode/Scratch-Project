@@ -1,50 +1,43 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import axios from 'axios';
 
 class OutputBox extends Component {
   constructor(props) {
     super(props);
+    this.checkNow = this.checkNow.bind(this);
   }
-  
-  checkNow () {
-    //triggered by onsubmit
-    fetch('/main/checkNow', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.props.url_id),
-    })
-      .then(res => res.json())
-      .then(data => {
-        statusObj = {
-          status: data.status,
-          url_id: this.props.url_id
-        }
+
+  checkNow() {
+    return axios
+      .post('http://localhost:3000/main/checkNow', {
+        url_id: this.props.url_id,
+        url: this.props.url,
       })
-      .then(() => this.props.dispatchCheckStatus(statusObj))
-      .catch ((err) => {
+      .then((status) =>
+        this.props.dispatchCheckStatus({
+          status: status.data.status,
+          url_id: this.props.url_id,
+        })
+      )
+      .catch((err) => {
         console.error(err.messsage);
-      })
-    }
+      });
+  }
+
   render() {
     return (
-      <div>
-        <div className="outputBox" 
-        url_id={this.props.url_id}
-        > 
-        
-          {/* url: {this.props.url}
-          status: {this.props.status}  */}
-       
-        <button onClick={ () => checkNow() }>check now</button>
-        <button>uptime</button>
+      <div id="boxes">
+        <div className="api-cards-text" url_id={this.props.url_id}>
+          <p className="url-text">{this.props.url.toUpperCase()}</p>
+          <p className="status-text">{this.props.status}</p>
+          <div className="output-buttons">
+            <button onClick={this.checkNow}>STATUS</button>
+            <button>UPTIME</button>
+          </div>
         </div>
-        <h1>Output Box is a success! {this.props.url_id}</h1>
       </div>
-    )
+    );
   }
- }
-
+}
 
 export default OutputBox;

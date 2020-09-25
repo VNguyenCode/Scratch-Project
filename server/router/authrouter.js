@@ -1,18 +1,32 @@
 const express = require('express');
-const authcontroller = require('../controller/maincontroller');
+const authcontroller = require('../controller/authcontroller');
 const router = express.Router();
+
+/* Iteration Option: We have not touched this, only laid the framework for authentication. */
 
 /*1) will pull username and password from input box
 url= /login, info will come in req.body
 response is 200 status/error status
-200= go to dashboard/front page
 error status= direct back to sign up page*/
 
-/*2) api= /register, 
-req.body = username, password, phoneNumber
-middleware will validate whether username or phone number is already taken
-store username, etc in database
-send to frontend- res.status 200 or error*/
+router.post(
+  '/login',
+  authcontroller.verify,
+  authcontroller.checkPw,
+  (req, res) => {
+    if (!res.locals.exists) res.send('username or password does not match');
+    else
+      res.send({ user_id: res.locals.user_id, username: res.locals.username });
+  }
+);
 
+router.post(
+  '/signup',
+  authcontroller.hashPassword,
+  authcontroller.saveUser,
+  (req, res) => {
+    res.redirect('/');
+  }
+);
 
 module.exports = router;

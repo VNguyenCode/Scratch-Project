@@ -1,28 +1,66 @@
-import * as types from '../actions/action';
+import * as types from '../constants/actionTypes';
 
 const initialState = {
-  endpointsList: [],
+  /* Dummy Data this would be for pulling from DB */
+  urlList: [
+    {
+      // username: 'Lucy',
+      url: 'www.yahoo.com',
+      status: 400,
+      url_id: 80,
+    },
+    {
+      // username: 'Chris',
+      url: 'www.coinbase.com',
+      status: 400,
+      url_id: 81,
+    },
+    {
+      // username: 'Joon',
+      url: 'www.facebook.com',
+      status: 400,
+      url_id: 90,
+    },
+  ],
   newEndpoint: '',
-  status: undefined,
+  status: '',
+  currentUser: '',
   // graphData(maybe time/)
-  
 };
 
 const outputReducer = (state = initialState, action) => {
-  // ensure we make it to the reducer
-  // console.log('made it to the reducer');
   switch (action.type) {
-    // case types.enterTypeHere:
-  //...initialstate
-  // endpointsList: [{obj1}, {obj2}],
-  // newEndpoint: '',
-  // status: undefined,
-  
-  // something action payload 
-  // JOON MAKE SURE YOU DO THIS!!!
+    case types.ADD_URL: {
+      const newURLobj = action.payload;
+      const copyUrlList = state.urlList.slice();
+      copyUrlList.push(newURLobj);
 
+      const newStatus = action.payload.status;
 
-  //   // case types.enterTypeHere:
+      return {
+        ...state,
+        urlList: copyUrlList,
+        status: newStatus,
+      };
+    }
+    case types.CHECK_NOW: {
+      const newStatusObj = action.payload;
+      console.log(newStatusObj);
+      const copyUrlList = state.urlList.slice();
+
+      copyUrlList.forEach((item) => {
+        if (item.url_id === newStatusObj.url_id) {
+          item.status = newStatusObj.status;
+        }
+      });
+      console.log(copyUrlList);
+      return {
+        ...state,
+        urlList: copyUrlList,
+      };
+    }
+    default:
+      return state;
   }
 };
 

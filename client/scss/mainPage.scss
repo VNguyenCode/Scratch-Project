@@ -1,0 +1,105 @@
+@import './variables';
+
+body {
+  background: $background-color;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  #uptime-logo {
+    width: 100px;
+    margin: 100px auto 10px auto;
+  }
+  h1 {
+    font-family: 'Bungee Hairline', cursive;
+    color: $primary-color;
+    font-size: 32px;
+    margin: 0 auto 30px auto;
+  }
+}
+
+#outputBoxContainer {
+  display: flex;
+  justify-content: center;
+  #outputBox {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 0 100px 0;
+  }
+}
+
+#inputBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding-bottom: 60px;
+  width: 199px;
+  input {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    margin: 3px 0;
+  }
+  button {
+    padding: 5px 0;
+    margin: 3px 0 0 0;
+    background-color: $primary-color;
+    border-radius: 2px;
+    border: none;
+  }
+}
+
+#boxes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid $secondary-color;
+  border-radius: 3%;
+  width: 240px;
+  height: 200px;
+  margin: 20px;
+  color: #ffffff;
+
+  button {
+    padding: 5px 8px;
+    margin: 3px 5px 0 5px;
+    background-color: $primary-color;
+    border-radius: 2px;
+    border: none;
+  }
+  .api-cards-text {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+  }
+  .status-text {
+    display: flex;
+    margin: 0 auto;
+    font-size: 50px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .url-text {
+    display: flex;
+    margin: 0 auto 10px auto;
+    font-family: 'Bungee Hairline', cursive;
+    max-width: 175px;
+    overflow-x: auto;
+  }
+  .url-text::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+  }
+  .output-buttons {
+    display: flex;
+    margin: 10px auto 0 auto;
+  }
+}
